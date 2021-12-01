@@ -24,12 +24,13 @@ export default class Database {
     const connectionOptions: ConnectionOptions = {
       entities,
       password,
+      // dropSchema: true,
       type: process.env.TYPEORM_CONNECTION as any,
       host: process.env.TYPEORM_HOST,
       database: process.env.TYPEORM_DATABASE,
       username: process.env.TYPEORM_USERNAME,
       port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
-      synchronize: process.env.SYNCHRONIZE === 'true',
+      synchronize: true,
       appname: 'woong-blog',
       logging: process.env.TYPEORM_LOGGING === 'true',
     };

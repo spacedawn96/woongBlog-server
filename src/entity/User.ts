@@ -4,25 +4,28 @@ import {
   Column,
   Index,
   CreateDateColumn,
-  UpdateDateColumn,
+  OneToOne,
+  OneToMany,
+  ManyToMany,
 } from 'typeorm';
+import UserProfile from './UserProfile';
 
 @Entity('users', {
   synchronize: true,
 })
 export default class User {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Index()
-  @Column({ unique: true, length: 255 })
+  @Column({ unique: true, length: 20 })
   username!: string;
 
   @Column('text')
   password!: string;
 
   @Index()
-  @Column({ unique: true, length: 255, nullable: true, type: 'varchar' })
+  @Column({ unique: true, length: 20, nullable: true })
   email!: string | null;
 
   @Column({ default: false })
@@ -31,11 +34,10 @@ export default class User {
   @Column('int', { default: 0 })
   tokenVersion!: number;
 
-  @Column('timestampz')
-  @CreateDateColumn()
+  @Index()
+  @CreateDateColumn({ type: 'timestamp' })
   created_at!: Date;
 
-  @Column('timestamptz')
-  @UpdateDateColumn()
-  updated_at!: Date;
+  @OneToOne(type => UserProfile, profile => profile.user)
+  profile!: UserProfile;
 }
