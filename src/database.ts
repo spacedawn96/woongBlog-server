@@ -44,6 +44,7 @@ export default class Database {
       const connection = this.connectionManager.get(CONNECTION_NAME);
       try {
         if (connection.isConnected) {
+          console.log('hello there');
           await connection.close();
         }
       } catch {}

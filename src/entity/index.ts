@@ -9,6 +9,7 @@ import PostReadLog from './PostReadLog';
 import Following from './Following';
 import Followers from './Followers';
 import Tag from './Tag';
+import SocialUser from './SocialUser';
 
 const entitie = [
   Comments,
@@ -22,6 +23,7 @@ const entitie = [
   UserProfile,
   PostReadLog,
   Tag,
+  SocialUser,
 ];
 
 export default entitie;

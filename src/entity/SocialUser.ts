@@ -9,24 +9,18 @@ import {
 } from 'typeorm';
 import User from './User';
 
-@Entity('user_profiles', {
+@Entity('social_user', {
   synchronize: true,
 })
-export default class UserProfile {
+export default class SocialUser {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ length: 100 })
-  bio!: string;
+  @Index()
+  @Column({ unique: true })
+  githubId: string;
 
   @Index()
   @CreateDateColumn({ type: 'timestamp' })
   created_at!: Date;
-
-  @OneToOne(type => User, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user_id' })
-  user!: User;
-
-  @Column('uuid')
-  user_id!: string;
 }

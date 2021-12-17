@@ -5,8 +5,6 @@ import {
   Index,
   CreateDateColumn,
   OneToOne,
-  OneToMany,
-  ManyToMany,
 } from 'typeorm';
 import UserProfile from './UserProfile';
 
